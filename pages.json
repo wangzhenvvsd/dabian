@@ -1,0 +1,86 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "大信商城",
+				"navigationBarBackgroundColor": "#ffffff",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"buttons": [
+							{
+								"float": "left",
+								"fontSrc": "./static/iconfont.ttf",
+								"text": "\ue63d"
+							},
+							{
+								"float": "right",
+								"fontSrc": "./static/iconfont.ttf",
+								"text": "\uec3b"
+							}
+						]
+					}
+				}
+			}
+		}, {
+			"path": "pages/list/list",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/shopcar/shopcar",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#636263",
+		"selectedColor": "#636263",
+		"spacing": "5px",
+		"iconWidth": "25px",
+		"height": "50px",
+		"list": [
+			{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/tagbar/index.png",
+			"selectedIconPath": "static/tagbar/indexSelected.png",
+			"text": "首页"
+			},{
+			"pagePath": "pages/list/list",
+			"iconPath": "static/tagbar/list.png",
+			"selectedIconPath": "static/tagbar/listSelected.png",
+			"text": "分类"
+			},{
+			"pagePath": "pages/shopcar/shopcar",
+			"iconPath": "static/tagbar/shop.png",
+			"selectedIconPath": "static/tagbar/shopSelected.png",
+			"text": "购物车"
+			},{
+			"pagePath": "pages/my/my",
+			"iconPath": "static/tagbar/my.png",
+			"selectedIconPath": "static/tagbar/mySelected.png",
+			"text": "我的"
+			}
+		]
+	}
+}
