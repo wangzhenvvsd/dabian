@@ -6,4 +6,90 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
+router.get("/api/index_list/data",function(req,res,next){
+	res.send({
+		"code":0,
+		"data":{
+			topBar:[
+				{id:1,name:'推荐'},
+				{id:2,name:'运动户外'},
+				{id:3,name:'服饰内衣'},
+				{id:4,name:'鞋靴箱包'},
+				{id:5,name:'美妆个护'},
+				{id:6,name:'家居数码'},
+				{id:7,name:'食品母婴'},
+			],
+			data:[
+				{
+					type:"swiperList",
+					data:[
+						{imgUrl:'../../static/img/swiper1.jpg'},
+						{imgUrl:'../../static/img/swiper2.jpg'},
+						{imgUrl:'../../static/img/swiper3.jpg'},
+					]
+				},
+				{
+					type:"recommendList",
+					data:[
+						{
+							bigUrl:"../../static/img/Children.jpg",
+							data:[
+								{imgUrl:"../../static/img/Children1.jpg"},
+								{imgUrl:"../../static/img/Children2.jpg"},
+								{imgUrl:"../../static/img/Children3.jpg"},
+							]
+						},
+						{
+							bigUrl:"../../static/img/Furnishing.jpg",
+							data:[
+								{imgUrl:"../../static/img/Furnishing1.jpg"},
+								{imgUrl:"../../static/img/Furnishing2.jpg"},
+								{imgUrl:"../../static/img/Furnishing3.jpg"},
+							]
+						},
+						]
+				},
+				{
+					type:"commodityList",
+					data:[
+						{
+							id:1,
+							imgUrl:"../../static/img/commodity1.jpg",
+							name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+							pprice:"299",
+							oprice:"599",
+							discount:"5.2"
+						},
+						{
+							id:2,
+							imgUrl:"../../static/img/commodity2.jpg",
+							name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+							pprice:"299",
+							oprice:"599",
+							discount:"5.2"
+						},
+						{
+							id:3,
+							imgUrl:"../../static/img/commodity3.jpg",
+							name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+							pprice:"299",
+							oprice:"599",
+							discount:"5.2"
+						},
+						{
+							id:4,
+							imgUrl:"../../static/img/commodity4.jpg",
+							name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+							pprice:"299",
+							oprice:"599",
+							discount:"5.2"
+						},
+					]
+				},
+			]
+		}
+	})
+})
+
 module.exports = router;

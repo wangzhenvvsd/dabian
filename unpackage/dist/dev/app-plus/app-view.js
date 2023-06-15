@@ -310,26 +310,43 @@ var render = function () {
             { key: item, attrs: { _i: "5-" + $31 } },
             [
               _c(
-                "uni-view",
+                "v-uni-scroll-view",
                 {
-                  staticClass: _vm._$g("6-" + $31, "sc"),
-                  attrs: { _i: "6-" + $31 },
+                  style: _vm._$g("6-" + $31, "s"),
+                  attrs: { "scroll-y": "true", _i: "6-" + $31 },
                 },
                 [
-                  _c("IndexSwiper", { attrs: { _i: "7-" + $31 } }),
-                  _c("Recommend", { attrs: { _i: "8-" + $31 } }),
-                  _c("Card", { attrs: { _i: "9-" + $31 } }),
-                  _c("CommodityList", { attrs: { _i: "10-" + $31 } }),
-                  _c("Banner", { attrs: { _i: "11-" + $31 } }),
-                  _c("Icons", { attrs: { _i: "12-" + $31 } }),
-                  _c("Card", { attrs: { _i: "13-" + $31 } }),
-                  _c("Hot", { attrs: { _i: "14-" + $31 } }),
-                  _c("Card", { attrs: { _i: "15-" + $31 } }),
-                  _c("Shop", { attrs: { _i: "16-" + $31 } }),
-                  _c("Card", { attrs: { _i: "17-" + $31 } }),
-                  _c("CommodityList", { attrs: { _i: "18-" + $31 } }),
+                  _vm._l(
+                    _vm._$g(7 + "-" + $31, "f"),
+                    function (k, i, $22, $32) {
+                      return [
+                        _vm._$g("8-" + $31 + "-" + $32, "i")
+                          ? _c("IndexSwiper", {
+                              key: k["k0"],
+                              attrs: { _i: "8-" + $31 + "-" + $32 },
+                            })
+                          : _vm._e(),
+                        _vm._$g("9-" + $31 + "-" + $32, "i")
+                          ? [
+                              _c("Recommend", {
+                                attrs: { _i: "10-" + $31 + "-" + $32 },
+                              }),
+                              _c("Card", {
+                                attrs: { _i: "11-" + $31 + "-" + $32 },
+                              }),
+                            ]
+                          : _vm._e(),
+                        _vm._$g("12-" + $31 + "-" + $32, "i")
+                          ? _c("CommodityList", {
+                              key: k["k2"],
+                              attrs: { _i: "12-" + $31 + "-" + $32 },
+                            })
+                          : _vm._e(),
+                      ]
+                    }
+                  ),
                 ],
-                1
+                2
               ),
             ],
             1
@@ -511,62 +528,33 @@ var render = function () {
         _i: 0,
       },
     },
-    [
-      _c(
+    _vm._l(_vm._$g(1, "f"), function (item, index, $20, $30) {
+      return _c(
         "v-uni-swiper-item",
-        { attrs: { _i: 1 } },
+        { key: item, attrs: { _i: "1-" + $30 } },
         [
           _c(
             "uni-view",
-            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            {
+              staticClass: _vm._$g("2-" + $30, "sc"),
+              attrs: { _i: "2-" + $30 },
+            },
             [
               _c("v-uni-image", {
-                staticClass: _vm._$g(3, "sc"),
-                attrs: { src: _vm._$g(3, "a-src"), mode: "", _i: 3 },
+                staticClass: _vm._$g("3-" + $30, "sc"),
+                attrs: {
+                  src: _vm._$g("3-" + $30, "a-src"),
+                  mode: "",
+                  _i: "3-" + $30,
+                },
               }),
             ],
             1
           ),
         ],
         1
-      ),
-      _c(
-        "v-uni-swiper-item",
-        { attrs: { _i: 4 } },
-        [
-          _c(
-            "uni-view",
-            { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
-            [
-              _c("v-uni-image", {
-                staticClass: _vm._$g(6, "sc"),
-                attrs: { src: _vm._$g(6, "a-src"), mode: "", _i: 6 },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _c(
-        "v-uni-swiper-item",
-        { attrs: { _i: 7 } },
-        [
-          _c(
-            "uni-view",
-            { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-            [
-              _c("v-uni-image", {
-                staticClass: _vm._$g(9, "sc"),
-                attrs: { src: _vm._$g(9, "a-src"), mode: "", _i: 9 },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-    ],
+      )
+    }),
     1
   )
 }
@@ -607,6 +595,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
+  props: ["dataList"],
   data: function data() {
     return {
       wxsProps: {}
@@ -1295,68 +1284,50 @@ var render = function () {
   return _c(
     "uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
-    [
-      _c(
+    _vm._l(_vm._$g(1, "f"), function (item, index, $20, $30) {
+      return _c(
         "uni-view",
-        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
+        {
+          key: item,
+          staticClass: _vm._$g("1-" + $30, "sc"),
+          attrs: { _i: "1-" + $30 },
+        },
         [
           _c("v-uni-image", {
-            staticClass: _vm._$g(2, "sc"),
-            attrs: { src: _vm._$g(2, "a-src"), mode: "", _i: 2 },
+            staticClass: _vm._$g("2-" + $30, "sc"),
+            attrs: {
+              src: _vm._$g("2-" + $30, "a-src"),
+              mode: "",
+              _i: "2-" + $30,
+            },
           }),
           _c(
             "uni-view",
-            { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+            {
+              staticClass: _vm._$g("3-" + $30, "sc"),
+              attrs: { _i: "3-" + $30 },
+            },
             [
-              _c("v-uni-image", {
-                staticClass: _vm._$g(4, "sc"),
-                attrs: { src: _vm._$g(4, "a-src"), mode: "", _i: 4 },
-              }),
-              _c("v-uni-image", {
-                staticClass: _vm._$g(5, "sc"),
-                attrs: { src: _vm._$g(5, "a-src"), mode: "", _i: 5 },
-              }),
-              _c("v-uni-image", {
-                staticClass: _vm._$g(6, "sc"),
-                attrs: { src: _vm._$g(6, "a-src"), mode: "", _i: 6 },
+              _vm._l(_vm._$g(4 + "-" + $30, "f"), function (k, i, $21, $31) {
+                return [
+                  _c("v-uni-image", {
+                    key: k["k0"],
+                    staticClass: _vm._$g("5-" + $30 + "-" + $31, "sc"),
+                    attrs: {
+                      src: _vm._$g("5-" + $30 + "-" + $31, "a-src"),
+                      mode: "",
+                      _i: "5-" + $30 + "-" + $31,
+                    },
+                  }),
+                ]
               }),
             ],
-            1
+            2
           ),
         ],
         1
-      ),
-      _c(
-        "uni-view",
-        { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-        [
-          _c("v-uni-image", {
-            staticClass: _vm._$g(8, "sc"),
-            attrs: { src: _vm._$g(8, "a-src"), mode: "", _i: 8 },
-          }),
-          _c(
-            "uni-view",
-            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-            [
-              _c("v-uni-image", {
-                staticClass: _vm._$g(10, "sc"),
-                attrs: { src: _vm._$g(10, "a-src"), mode: "", _i: 10 },
-              }),
-              _c("v-uni-image", {
-                staticClass: _vm._$g(11, "sc"),
-                attrs: { src: _vm._$g(11, "a-src"), mode: "", _i: 11 },
-              }),
-              _c("v-uni-image", {
-                staticClass: _vm._$g(12, "sc"),
-                attrs: { src: _vm._$g(12, "a-src"), mode: "", _i: 12 },
-              }),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-    ],
+      )
+    }),
     1
   )
 }
@@ -1397,6 +1368,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
+  props: ["dataList"],
   data: function data() {
     return {
       wxsProps: {}
@@ -1454,7 +1426,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../hbuilderx/hbuilderx/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.recommend[data-v-7ae9bbb4]{\r\n\tpadding: 20rpx;\n}\n.recommend-item[data-v-7ae9bbb4]{\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tborder-radius: 20rpx;\r\n\tborder: 2rpx solid #ccc;\r\n\toverflow: hidden;\r\n\tmargin: 20rpx 0;\n}\n.item-big[data-v-7ae9bbb4]{\r\n\twidth: 100%;\r\n\theight: 300rpx;\n}\n.item-small[data-v-7ae9bbb4]{\r\n\twidth: 100%;\r\n\theight: 240rpx;\n}\n.item-img[data-v-7ae9bbb4]{\r\n\twidth: 33.3%;\n}\r\n", ""]);
+exports.push([module.i, "\n.recommend[data-v-7ae9bbb4] {\n\tpadding: 20rpx;\n}\n.recommend-item[data-v-7ae9bbb4] {\n\tdisplay: flex;\n\tflex-direction: column;\n\tborder-radius: 20rpx;\n\tborder: 2rpx solid #ccc;\n\toverflow: hidden;\n\tmargin: 20rpx 0;\n}\n.item-big[data-v-7ae9bbb4] {\n\twidth: 100%;\n\theight: 300rpx;\n}\n.item-small[data-v-7ae9bbb4] {\n\twidth: 100%;\n\theight: 240rpx;\n}\n.item-img[data-v-7ae9bbb4] {\n\twidth: 33.3%;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -1782,6 +1754,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _Commodity = _interopRequireDefault(__webpack_require__(/*! ./Commodity.vue */ 41));
 var _default = {
+  props: ["dataList"],
   data: function data() {
     return {
       wxsProps: {}
@@ -2966,7 +2939,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../hbuilderx/hbuilderx/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.scroll-content[data-v-2be84a3c]{\n\twidth: 100%;\n\theight: 80rpx;\n\twhite-space: nowrap;\n}\n.scroll-item[data-v-2be84a3c]{\n\tdisplay: inline-block;\n\tpadding: 10rpx 30rpx;\n\tfont-size: 36rpx;\n}\n.f-active-color[data-v-2be84a3c]{\n\tpadding: 10rpx 0;\n\tborder-bottom: 4rpx solid #49bdfb;\n}\n", ""]);
+exports.push([module.i, "\n.scroll-content[data-v-2be84a3c] {\n\twidth: 100%;\n\theight: 80rpx;\n\twhite-space: nowrap;\n}\n.scroll-item[data-v-2be84a3c] {\n\tdisplay: inline-block;\n\tpadding: 10rpx 30rpx;\n\tfont-size: 36rpx;\n}\n.f-active-color[data-v-2be84a3c] {\n\tpadding: 10rpx 0;\n\tborder-bottom: 4rpx solid #49bdfb;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
