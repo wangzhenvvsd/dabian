@@ -1,12 +1,12 @@
 <template>
 	<view class="shop">
-		<view class="shop-item">
+		<view class="shop-item" v-for="(item,index) in dataList" :key="index">
 			<view class="shop-bg">
-				<image class="shop-bg" src="../../static/img/shop.jpg" mode=""></image>
+				<image class="shop-bg" :src="item.bigUrl" mode=""></image>
 			</view>
 			<scroll-view scroll-x="true" class="scroll-content">
 				<view class="scroll-item">
-					<Commodity :dataList="shopList" wrap="no-wrap" itemW="200rpx" bigH="200rpx" nameSize="12rpx"></Commodity>
+					<Commodity :dataList="item.data" wrap="no-wrap" itemW="200rpx" bigH="200rpx" nameSize="12rpx"></Commodity>
 				</view>
 			</scroll-view>
 		</view>
@@ -16,107 +16,8 @@
 <script>
 	import Commodity from '../common/Commodity.vue'
 	export default{
-		data() {
-			return{
-				shopList:[
-					{
-						id:1,
-						imgUrl:"../../static/img/shop1.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:2,
-						imgUrl:"../../static/img/shop2.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:3,
-						imgUrl:"../../static/img/shop3.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:1,
-						imgUrl:"../../static/img/shop1.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:2,
-						imgUrl:"../../static/img/shop2.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:3,
-						imgUrl:"../../static/img/shop3.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:1,
-						imgUrl:"../../static/img/shop1.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:2,
-						imgUrl:"../../static/img/shop2.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:3,
-						imgUrl:"../../static/img/shop3.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:1,
-						imgUrl:"../../static/img/shop1.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:2,
-						imgUrl:"../../static/img/shop2.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-					{
-						id:3,
-						imgUrl:"../../static/img/shop3.jpg",
-						name:"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-						pprice:"299",
-						oprice:"599",
-						discount:"5.2"
-					},
-				]
-			}
+		props:{
+			dataList:Array
 		},
 		components:{
 			Commodity

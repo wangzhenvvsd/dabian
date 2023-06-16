@@ -1,42 +1,20 @@
 <template>
 	<view class="icons">
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon1.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
+		<view class="icons-item" v-for="(item,index) in dataList"  :key="index">
+			<image class="icons-img" :src="item.imgUrl" mode=""></image>
+			<text class="f-color">{{item.name}}</text>
 		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon2.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon3.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon4.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon5.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon6.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon7.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
-		<view class="icons-item">
-			<image class="icons-img" src="../../static/img/icon8.jpg" mode=""></image>
-			<text class="f-color">运动户外</text>
-		</view>
+		
 		
 	</view>
 </template>
 
 <script>
+	export default{
+		props:{
+			dataList:Array
+		}
+	}
 </script>
 
 <style scoped>

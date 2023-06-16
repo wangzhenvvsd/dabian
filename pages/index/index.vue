@@ -10,20 +10,49 @@
 
 		<swiper @change="onChangeTab" :current="topBarIndex" :style="`height: ${clentHeight}px;`">
 			<swiper-item v-for="(item,index) in newTopBar" :key="index">
-				<scroll-view scroll-y="true" :style="`height: ${clentHeight}px;`">
-					<block v-for="(k,i) in item.data" :key="i">
-						<IndexSwiper v-if="k.type==='swiperList'" :dataList='k.data'></IndexSwiper>
-						
-						<template v-if="k.type==='recommendList'" >
-							<Recommend :dataList='k.data'></Recommend>
-							<Card cardTitle='猜你喜欢'></Card>
-						</template>
-						
-						<CommodityList v-if="k.type==='commodityList'" :dataList='k.data'></CommodityList>
+				<scroll-view scroll-y="true" :style="`height: ${clentHeight}px;`" @scrolltolower="loadMore(index)">
+					<block v-if="item.data.length > 0">
+						<block v-for="(k,i) in item.data" :key="i">
+
+
+
+							<!-- 推荐 -->
+							<IndexSwiper v-if="k.type==='swiperList'" :dataList='k.data'></IndexSwiper>
+							<template v-if="k.type==='recommendList'">
+								<Recommend :dataList='k.data'></Recommend>
+								<Card cardTitle='猜你喜欢'></Card>
+							</template>
+							<!-- 运动户外。。。 -->
+							<Banner v-if="k.type==='bannerList'" :dataList="k.imgUrl"></Banner>
+							<template v-if="k.type==='iconList'">
+								<Icons :dataList="k.data"></Icons>
+								<Card cardTitle='热销爆品'></Card>
+							</template>
+							<template v-if="k.type==='hotList'">
+								<Hot :dataList="k.data"></Hot>
+								<Card cardTitle='推荐店铺'></Card>
+							</template>
+							<template v-if="k.type==='shopList'">
+								<Shop :dataList="k.data"></Shop>
+								<Card cardTitle='为您推荐'></Card>
+							</template>
+
+							<CommodityList v-if="k.type==='commodityList'" :dataList='k.data'></CommodityList>
+
+
+
+
+
+
+						</block>
 					</block>
+					<view class="" v-else>敬请期待...</view>
+					<view class="load-text f-color">
+						{{item.loadText}}
+					</view>
 				</scroll-view>
-					
-				
+
+
 			</swiper-item>
 		</swiper>
 		<!-- 推荐模板 -->
@@ -45,6 +74,7 @@
 </template>
 
 <script>
+	import $http from '@/common/api/request.js'
 	import Shop from '@/components/index/Shop.vue'
 	import Banner from '@/components/index/Banner.vue'
 	import Icons from '@/components/index/Icons.vue'
@@ -56,6 +86,7 @@
 	export default {
 		data() {
 			return {
+				URL: `192.168.24.229:3007`,
 				// 选中的索引
 				topBarIndex: 0,
 				// 顶栏跟随索引id值
@@ -96,31 +127,48 @@
 			// 	this.clentHeight = 2000
 			// 	// this.clentHeight=data.height
 			// }).exec()
+
+
 			uni.getSystemInfo({
-				success:(res)=>{
-					this.clentHeight = res.windowHeight
+				success: (res) => {
+					this.clentHeight = res.windowHeight - uni.upx2px(80) - this.getClientHeight()
 				}
 			})
 		},
 		methods: {
+			//请求首页数据
 			__init() {
-				uni.request({
-					url: "http://192.168.170.229:3007/api/index_list/data",
-					success: (res) => {
-						let data = res.data.data
-						console.log(res.data.data)
-						this.topBar = data.topBar
-						// console.log(this.initData(data))
-						this.newTopBar = this.initData(data)
-					}
+				$http.request({
+					url:"/index_list/data"
+				}).then((res)=>{
+					this.topBar = res.topBar
+					this.newTopBar = this.initData(res)
+				}).catch(()=>{
+					uni.showToast({
+						title:"flase to request",
+						icon:"none"
+					})
 				})
+				// uni.request({
+				// 	url: `http://${this.URL}/api/index_list/data`,
+				// 	success: (res) => {
+				// 		let data = res.data.data
+				// 		console.log(res.data.data)
+				// 		this.topBar = data.topBar
+				// 		// console.log(this.initData(data))
+				// 		this.newTopBar = this.initData(data)
+				// 	}
+				// })
 			},
+			//添加数据
 			initData(res) {
 				let arr = []
 				console.log(this.topBar.length)
 				for (let i = 0; i < this.topBar.length; i++) {
 					let obj = {
-						data: []
+						data: [],
+						load: "first",
+						loadText:"上拉加载更多..."
 					}
 					//获取首次数据
 					if (i == 0) {
@@ -130,14 +178,82 @@
 				}
 				return arr
 			},
+			//点击顶栏
 			changeTab(index) {
-				if (data.topBarIndex != index) {
+				if (this.topBarIndex != index) {
 					this.topBarIndex = index
-					this.scrollIntoIndex = index - 2
+					this.scrollIntoInde = index - 2
+					//每次滑动赋值 ==>first
+					if (this.newTopBar[this.topBarIndex].load === "first") {
+						this.addData()
+
+					}
 				} else return
 			},
+			//对应滑动
 			onChangeTab(e) {
 				this.changeTab(e.detail.current)
+			},
+			//获取可视区域高度【兼容】
+			getClientHeight() {
+				const res = uni.getSystemInfoSync()
+				console.log(res.platform, res.statusBarHeight)
+				const system = res.platform
+				if (system === "ios") {
+					return 0 - res.statusBarHeight
+				} else if (system === "android") {
+					return 20 - res.statusBarHeight
+				} else {
+					return 0
+				}
+			},
+			//对应显示不同数据
+			addData(callback) {
+				//拿到索引
+				let index = this.topBarIndex
+				//拿到id==>不同的板块
+				let id = this.topBar[index].id
+				//请求不同的数据
+				let page = Math.ceil(this.newTopBar[index].data.length/5)+1
+				console.log(page)
+				//请求数据
+				$http.request({
+					url:`/index_list/${id}/data/${page}`
+				}).then((res)=>{
+					this.newTopBar[index].data = [...this.newTopBar[index].data, ...res]
+				}).catch(()=>{
+					uni.showToast({
+						title:"flase to request",
+						icon:"none"
+					})
+				})
+				// uni.request({
+				// 	url: `http://${this.URL}/api/index_list/${id}/data/${page}`,
+				// 	success: (res) => {
+				// 		if (res.statusCode != 200) {
+				// 			return
+				// 		} else {
+				// 			let data = res.data.data
+				// 			console.log(data)
+				// 			this.newTopBar[index].data = [...this.newTopBar[index].data, ...data]
+				// 		}
+				// 	}
+				// })
+				
+				// console.log(this.newTopBar[index].data)
+				//当请求结束后重新赋值
+				this.newTopBar[index].load='last'
+				if(typeof callback === "function"){
+					callback()
+				}
+			},
+			//上拉加载更多
+			loadMore(index){
+				this.newTopBar[index].loadText="加载中>>>"
+				//请求完数据，文字信息又替换成【上拉加载更多】
+				this.addData(()=>{
+					this.newTopBar[index].loadText = "上拉加载更多..."
+				})
 			}
 		}
 	}
@@ -159,5 +275,10 @@
 	.f-active-color {
 		padding: 10rpx 0;
 		border-bottom: 4rpx solid #49bdfb;
+	}
+	.load-text{
+		border-top: 2rpx solid #636262;
+		line-height: 60rpx;
+		text-align: center;
 	}
 </style>
